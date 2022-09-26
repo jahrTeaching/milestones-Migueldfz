@@ -38,11 +38,9 @@ def U_euler(U,F,dt,i):
     return U + dt * F
 
 def F_euler(U,i):
-
+    
     x = U[0]; y = U[1]; dx_dt = U[2]; dy_dt = U[3]
     d = ( x**2 + y**2 )**1.5
-
-
     return np.array([ float(dx_dt), float(dy_dt), float(-x/d), float(-y/d)])
 
 
@@ -57,8 +55,6 @@ def kepler_abstraction_rk4():
 
     #Función de cálculo de Runge Kutta para Kepler
     kepler_rk4(U0,N,dt)
-
-
 
 def kepler_rk4(U0,N,dt):
 
@@ -116,7 +112,6 @@ def rk4_k(U,dt,k,i):
 def F_rk(U,k1,k2,k3,k4,dt,i):
 
     return U + dt*( k1 + 2 * k2 + 2 * k3 + k4 )/6
-
 
 kepler_abstraction_rk4()
 
