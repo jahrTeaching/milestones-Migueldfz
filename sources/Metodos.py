@@ -45,3 +45,75 @@ def F_euler(U,i):
 
 
     return np.array([ float(dx_dt), float(dy_dt), float(-x/d), float(-y/d)])
+
+
+
+def kepler_abstraction_rk4():
+
+    U0 = np.array([ 1, 0, 0, 1])
+    N = 1000
+    dt = 0.01
+
+    kepler_rk4(U0,N,dt)
+
+
+
+def kepler_rk4(U0,N,dt):
+
+    k1 = np.zeros(4)
+    k2 = np.zeros(4)
+    k3 = np.zeros(4)
+    k4 = np.zeros(4)
+    x = np.zeros(N)
+    y = np.zeros(N)
+    x[0] = U0[0]
+    y[0] = U0[1]
+
+    nu = len(U0)
+    U = np.zeros(nu)
+    U = U0
+
+    for i in range(N):
+
+        k1 = rk4_k1(U,dt,i)
+        k2 = rk4_k(U,dt,k1,i)
+        k3 = rk4_k(U,dt,k2,i)
+        k4 = rk4_k(U,dt,k3,i)
+
+        U = F_rk(U,k1,k2,k3,k4,dt,i)
+
+        x[i] = U[0]
+        y[i] = U[1]
+
+    plt.plot( x, y)
+    plt.show()
+
+def rk4_k1(U,dt,i):
+
+    x = U[0]
+    y = U[1]
+    dx = U[2]
+    dy = U[3]
+    d = ( x**2 + y**2)**1.5
+
+    return np.array([ dx, dy, -x/d, -y/d])
+
+def rk4_k(U,dt,k,i):
+    a = i-1
+    k_ = U + k * dt / 2
+    x = k_[0]
+    y = k_[1]
+    dx = k_[2]
+    dy = k_[3]
+    d = ( x**2 + y**2)**1.5
+
+    return np.array([ dx, dy, -x/d, -y/d])
+
+def F_rk(U,k1,k2,k3,k4,dt,i):
+
+    return U + dt*( k1 + 2 * k2 + 2 * k3 + k4 )/6
+
+
+kepler_abstraction_rk4()
+
+
