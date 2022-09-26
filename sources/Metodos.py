@@ -3,13 +3,14 @@ import matplotlib.pyplot as plt
 import scipy.optimize as sp
 
 def kepler_abstraction_euler():
-
+    
+    #condiciones iniciales de Cauchy
     U0 = np.array( [ 1, 0, 0, 1] )
     N = 150
     dt = 0.1
-
+    
+    #Función de cálculo de Euler para Kepler
     U = kepler_euler( U0, dt, N)
-
 
 
 
@@ -23,13 +24,14 @@ def kepler_euler( U0, dt, N):
     x[0] = U0[0]
     y[0] = U0[1]
     for i in range(N):
-
+        
+        #Ecuaciones del problema de Euler
         F = F_euler(U,i)
         U = U_euler(U,F,dt,i)
         x[i] = U[0]
         y[i] = U[1]
         
-        
+    #Gráfica de la órbita    
     plt.plot( x, y)
     plt.show()
 
@@ -49,11 +51,13 @@ def F_euler(U,i):
 
 
 def kepler_abstraction_rk4():
-
+    
+    #condiciones iniciales de Cauchy
     U0 = np.array([ 1, 0, 0, 1])
     N = 1000
     dt = 0.01
 
+    #Función de cálculo de Runge Kutta para Kepler
     kepler_rk4(U0,N,dt)
 
 
@@ -74,7 +78,8 @@ def kepler_rk4(U0,N,dt):
     U = U0
 
     for i in range(N):
-
+        
+        #Ecuaciones del problema de Runge Kutta de 4º Orden
         k1 = rk4_k1(U,dt,i)
         k2 = rk4_k(U,dt,k1,i)
         k3 = rk4_k(U,dt,k2,i)
@@ -84,7 +89,8 @@ def kepler_rk4(U0,N,dt):
 
         x[i] = U[0]
         y[i] = U[1]
-
+    
+    #Gráfica de la órbita
     plt.plot( x, y)
     plt.show()
 
