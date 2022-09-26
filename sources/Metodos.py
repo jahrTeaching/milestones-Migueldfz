@@ -12,8 +12,6 @@ def kepler_abstraction_euler():
     #Función de cálculo de Euler para Kepler
     U = kepler_euler( U0, dt, N)
 
-
-
 def kepler_euler( U0, dt, N):
 
     nu = len(U0)    
@@ -35,7 +33,6 @@ def kepler_euler( U0, dt, N):
     plt.plot( x, y)
     plt.show()
 
-
 def U_euler(U,F,dt,i):
 
     return U + dt * F
@@ -47,6 +44,7 @@ def F_euler(U,i):
 
 
     return np.array([ float(dx_dt), float(dy_dt), float(-x/d), float(-y/d)])
+
 
 
 
