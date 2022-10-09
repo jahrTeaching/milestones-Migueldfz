@@ -1,6 +1,6 @@
 import numpy as np
 from Cauchy_problem import Cauchy
-from Kepler problem import Kepler
+from Kepler_problem import Kepler
 from Temporal_schemes import Euler, RK4, Euler_Inv, Crank_Nicolson
 import matplotlib.pyplot as plt
 
