@@ -43,6 +43,8 @@ for scheme in schemes:
     plt.title(tit_scheme[s])
     plt.xlabel('log(N)')
     plt.ylabel('log(U2-U1)')
+    pendiente = linregress(log_N, log_E)
+    plt.plot(log_N, pendiente.intercept + pendiente.slope*log_N)
     plt.show()
 
     s = s + 1
