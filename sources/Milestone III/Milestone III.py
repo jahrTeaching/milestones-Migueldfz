@@ -1,4 +1,5 @@
 from numpy import linspace, array, zeros
+from scipy.stats import linregress
 from Cauchy_problem import Cauchy
 from Kepler_problem import Kepler
 from Temporal_schemes import Euler, RK4, Euler_Inv, Crank_Nicolson
